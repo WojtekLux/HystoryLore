@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HistoryLore - Szalone Historie Internetu</title>
+    <title>HistoryLore - Menu Główne</title>
     <style>
         :root {
             --bg-color: #0b0712;
@@ -30,96 +30,101 @@
 
         header {
             background: linear-gradient(135deg, #1f1135 0%, #0b0712 100%);
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
             border-bottom: 2px solid var(--accent-pink);
             box-shadow: 0 4px 20px rgba(255, 0, 127, 0.2);
         }
 
         .logo {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             background: linear-gradient(to right, var(--accent-pink), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+            text-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
             margin-bottom: 5px;
         }
 
         .tagline {
             color: var(--text-muted);
-            font-size: 0.9.5rem;
-            font-weight: 400;
+            font-size: 1rem;
         }
 
         main {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        .hashtag-bar {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
+        h3 {
+            text-align: center;
             margin-bottom: 25px;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
         }
 
-        .hashtag {
-            background-color: rgba(255, 0, 127, 0.1);
-            border: 1px solid var(--accent-pink);
-            color: var(--accent-pink);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .story-card {
+        .chapter-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .menu-card {
             background-color: var(--card-bg);
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             border: 1px solid rgba(157, 78, 221, 0.2);
             box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .chapter-badge {
-            background: linear-gradient(to right, var(--accent-pink), var(--accent-purple));
-            color: white;
-            padding: 4px 10px;
-            border-radius: 6px;
+        .menu-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+        }
+
+        .chapter-number {
             font-size: 0.8rem;
             font-weight: bold;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            color: #ffffff;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--accent-pink);
-            padding-left: 10px;
-        }
-
-        p {
-            margin-bottom: 18px;
-            color: #d1c7e3;
-            font-size: 1.05rem;
-            text-align: justify;
-        }
-
-        p strong {
             color: var(--accent-pink);
+            text-transform: uppercase;
+            margin-bottom: 5px;
         }
 
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--accent-purple), transparent);
-            margin: 25px 0;
+        .menu-card h4 {
+            color: #ffffff;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .menu-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .arrow {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-pink);
+            font-size: 1.5rem;
+            font-weight: bold;
         }
 
         footer {
@@ -127,8 +132,7 @@
             padding: 20px;
             color: var(--text-muted);
             font-size: 0.85rem;
-            border-top: 1px solid rgba(163, 149, 184, 0.1);
-            margin-top: 40px;
+            margin-top: 60px;
         }
     </style>
 </head>
@@ -136,39 +140,37 @@
 
     <header>
         <div class="logo">HistoryLore</div>
-        <div class="tagline">Oficjalne archiwum sekretnych historii internetu</div>
+        <div class="tagline">Wybierz uniwersum i odkryj sekrety influencerów</div>
     </header>
 
     <main>
-        <div class="hashtag-bar">
-            <span class="hashtag">#hotIqStroj</span>
-            <span class="hashtag">#StrojKapieliMadrosci</span>
-        </div>
+        <h3>Dostępne Opowieści:</h3>
 
-        <article class="story-card">
-            <span class="chapter-badge">Rozdział 1</span>
-            <h2>Śmiertelny błyszczyk i neonowe lustro</h2>
-            
-            <p>Zegarek w telefonie Salish wskazywał godzinę, o której cała szkoła miała zacząć schodzić się na największą domówkę semestru. Dziewczyna stała przed wielkim, podświetlanym lustrem w swojej garderobie, dopasowując ostatnie detale stylizacji. Na stole leżały setki kosmetyków, w tym błyszczyki z jej własnej linii, ale tym razem jej uwagę przykuło coś zupełnie innego.</p>
-            
-            <p>Rano kurier dostarczył tajemniczą paczkę bez nadawcy. W środku znajdował się jaskrawy, neonowo-różowy strój kąpielowy o dziwnie gładkim, wręcz kosmicznym materiale. Na metce widniał tylko jeden, zagadkowy napis: <strong>Stroj_Kąpieli/mądrości</strong>.</p>
-            
-            <p>Salish, wiedząc, że impreza ma być wyjątkowa, postanowiła go przymierzyć pod luźną bluzę. Gdy tylko materiał dotknął jej skóry, poczuła dziwne, przyjemne mrowienie. Kostium natychmiast idealnie dopasował się do jej sylwetki, jakby został uszyty specjalnie na nią.</p>
-            
-            <p>Dziewczyna sięgnęła po telefon, żeby nagrać szybkie POV na TikToka. Nagle w całym pokoju zapadła głęboka, nienaturalna cisza. Szum klimatyzacji i dźwięki ulicy za oknem ucięły się w jednym ułamku sekundy. Salish zamarła z telefonem w dłoni.</p>
-            
-            <p>W tafli lustra, zamiast swojego normalnego odbicia, zobaczyła pulsujący, różowy kształt, który zawirował przed jej oczami. <strong>W jej głowie coś gwałtownie kliknęło.</strong></p>
-            
-            <p>W ułamku sekundy cała jej ekscytacja imprezą, myśli o znajomych i wolna wola zniknęły, zastąpione przez absolutną, chłodną pustkę. Jej oczy straciły naturalny blask, stając się idealnie matowe, niczym u robota. W rogach jej pola widzenia rozbłysły cyfry cyfrowego interfejsu, który widziła tylko ona: <em>Tętno: 60 BPM (Zablokowane). System AI: Aktywny.</em></p>
-            
-            <p>Salish została całkowicie zahipnotyzowana. Nie wiedziała jeszcze, że ten usztywniający się materiał właśnie zintegrował się z jej ciałem na zawsze i nigdy już go nie ściągnie. W jej zresetowanym umyśle pojawił się tylko jeden, nadrzędny rozkaz, zakodowany potajemnie przez Wojtka i Kingę: <em>Idź na imprezę. Przekaż to dalej.</em></p>
-            
-            <p>Dziewczyna schowała telefon do kieszeni, poruszając się odrobinę sztywno, ale z niesamowitą, nienaturalną gracją. Wyszła z domu, kierując się prosto w stronę pułapki, którą jej znajomi zastawili na całą szkołę.</p>
-        </article>
+        <div class="menu-container">
+            <!-- ODNOŚNIK DO ROZDZIAŁU 1 -->
+            <a href="Storyhotiq/rozdzial1.html" class="chapter-link">
+                <div class="menu-card">
+                    <div class="chapter-number">Rozdział 1</div>
+                    <h4>Śmiertelny błyszczyk i neonowe lustro</h4>
+                    <p>Zobacz, jak Salish Matter przymierza tajemniczy strój kąpielowy i traci wolną wolę...</p>
+                    <span class="arrow">&rsaquo;</span>
+                </div>
+            </a>
+
+            <!-- ODNOŚNIK DO ROZDZIAŁU 2 -->
+            <a href="Storyhotiq/rozdzial2.html" class="chapter-link">
+                <div class="menu-card">
+                    <div class="chapter-number">Rozdział 2</div>
+                    <h4>Zainfekowana domówka</h4>
+                    <p>Szalona impreza, na której Nidal Wonder i reszta szkoły wpadają w różową pułapkę...</p>
+                    <span class="arrow">&rsaquo;</span>
+                </div>
+            </a>
+        </div>
     </main>
 
     <footer>
-        &copy; 2026 HistoryLore. Wszelkie prawa zastrzeżone. Projekt autorstwa i dla fanów #hotIqStroj.
+        &copy; 2026 HistoryLore. Projekt stworzony dla 4fun i dlatego ze lubie to czytac.
     </footer>
 
 </body>
