@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HistoryLore - Menu Główne</title>
+    <title>HistoryLore - Oficjalne E-Booki</title>
     <style>
         :root {
             --bg-color: #0b0712;
@@ -30,7 +30,7 @@
 
         header {
             background: linear-gradient(135deg, #1f1135 0%, #0b0712 100%);
-            padding: 40px 20px;
+            padding: 35px 20px;
             text-align: center;
             border-bottom: 2px solid var(--accent-pink);
             box-shadow: 0 4px 20px rgba(255, 0, 127, 0.2);
@@ -46,85 +46,206 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
             margin-bottom: 5px;
+            cursor: pointer;
         }
 
         .tagline {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         main {
-            max-width: 600px;
+            max-width: 700px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
         h3 {
-            text-align: center;
             margin-bottom: 25px;
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 1.1rem;
+            text-align: center;
         }
 
-        .menu-container {
+        .ebook-grid {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .chapter-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .menu-card {
+        .ebook-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 20px;
             border: 1px solid rgba(157, 78, 221, 0.2);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
             position: relative;
-            overflow: hidden;
         }
 
-        .menu-card:hover {
-            transform: translateY(-3px);
+        .ebook-card:hover {
+            transform: translateY(-4px);
             border-color: var(--accent-pink);
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.25);
         }
 
-        .chapter-number {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: var(--accent-pink);
-            text-transform: uppercase;
-            margin-bottom: 5px;
+        .ebook-cover-img {
+            width: 90px;
+            height: 130px;
+            background-image: url('https://postimg.cc');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            border: 1px solid var(--accent-pink);
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3);
+            flex-shrink: 0;
         }
 
-        .menu-card h4 {
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin-bottom: 8px;
+        .ebook-info {
+            flex-grow: 1;
+            padding-right: 30px;
         }
 
-        .menu-card p {
+        .ebook-info h4 {
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .ebook-description {
             color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 12px;
+            font-weight: 500;
         }
 
-        .arrow {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+        .meta-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .badge-age {
+            background-color: rgba(255, 0, 127, 0.15);
+            border: 1px solid var(--accent-pink);
             color: var(--accent-pink);
-            font-size: 1.5rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: bold;
+        }
+
+        .badge-topics {
+            background-color: rgba(157, 78, 221, 0.15);
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .arrow-right {
+            color: var(--accent-pink);
+            font-size: 1.8rem;
+            font-weight: bold;
+            position: absolute;
+            right: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .ebook-card:hover .arrow-right {
+            transform: translateX(5px);
+        }
+
+        .story-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        .chapter-badge {
+            background: linear-gradient(to right, var(--accent-pink), var(--accent-purple));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .story-container h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-pink);
+            padding-left: 12px;
+        }
+
+        .story-container p {
+            margin-bottom: 18px;
+            color: #d1c7e3;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .story-container strong {
+            color: var(--accent-pink);
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(163, 149, 184, 0.1);
+        }
+
+        .btn {
+            background-color: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--text-color);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-purple);
+            box-shadow: 0 0 10px rgba(157, 78, 221, 0.4);
+        }
+
+        .btn-next {
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+        }
+
+        .btn-next:hover {
+            background-color: var(--accent-pink);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
         }
 
         footer {
@@ -132,46 +253,144 @@
             padding: 20px;
             color: var(--text-muted);
             font-size: 0.85rem;
-            margin-top: 60px;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">HistoryLore</div>
-        <div class="tagline">Wybierz uniwersum i odkryj sekrety influencerów</div>
+        <div class="logo" onclick="showMenu()">HistoryLore</div>
+        <div class="tagline">Oficjalny portal z profesjonalnymi e-bookami młodzieżowymi</div>
     </header>
 
     <main>
-        <h3>Dostępne Opowieści:</h3>
-
-        <div class="menu-container">
-            <!-- ODNOŚNIK DO ROZDZIAŁU 1 -->
-            <a href="Storyhotiq/rozdzial1.html" class="chapter-link">
-                <div class="menu-card">
-                    <div class="chapter-number">Rozdział 1</div>
-                    <h4>Śmiertelny błyszczyk i neonowe lustro</h4>
-                    <p>Zobacz, jak Salish Matter przymierza tajemniczy strój kąpielowy i traci wolną wolę...</p>
-                    <span class="arrow">&rsaquo;</span>
+        
+        <div id="menu-section" class="section active">
+            <h3>Katalog Cyfrowych Wydań:</h3>
+            <div class="ebook-grid">
+                
+                <div class="ebook-card" onclick="openEbook()">
+                    <div class="ebook-cover-img"></div>
+                    
+                    <div class="ebook-info">
+                        <h4>Projekt #hotIqStroj: Różowa Apokalipsa</h4>
+                        <div class="ebook-description">Sekrety mądrości różowych strojów.</div>
+                        
+                        <div class="meta-badges">
+                            <span class="badge-age">Wiek: 12+</span>
+                            <span class="badge-topics">Średnie tematy</span>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-right">&rarr;</div>
                 </div>
-            </a>
 
-            <!-- ODNOŚNIK DO ROZDZIAŁU 2 -->
-            <a href="Storyhotiq/rozdzial2.html" class="chapter-link">
-                <div class="menu-card">
-                    <div class="chapter-number">Rozdział 2</div>
-                    <h4>Zainfekowana domówka</h4>
-                    <p>Szalona impreza, na której Nidal Wonder i reszta szkoły wpadają w różową pułapkę...</p>
-                    <span class="arrow">&rsaquo;</span>
-                </div>
-            </a>
+            </div>
         </div>
+
+        <div id="content-section" class="section">
+            <div class="story-container">
+                <div id="chapter-content"></div>
+                
+                <div class="bottom-nav">
+                    <button class="btn" onclick="showMenu()">&larr; Katalog</button>
+                    <button id="next-btn" class="btn btn-next" onclick="nextChapter()">Następny Rozdział &rarr;</button>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <footer>
-        &copy; 2026 HistoryLore. Projekt stworzony dla 4fun i dlatego ze lubie to czytac.
+        &copy; 2026 HistoryLore. Oficjalne i darmowe wydania sieciowe.
     </footer>
 
-</body>
-</html>
+    <script>
+        const chapters = {
+            1: {
+                badge: "Rozdział 1",
+                title: "Śmiertelny błyszczyk i neonowe lustro",
+                text: `<p>Zegarek w telefonie Salish wskazywał godzinę, o której cała szkoła miała zacząć schodzić się na największą domówkę semestru. Dziewczyna stała przed wielkim, podświetlanym lustrem w swojej garderobie, dopasowując ostatnie detale stylizacji. Na stole leżały setki kosmetyków, w tym błyszczyki z jej własnej linii, ale tym razem jej uwagę przykuło coś zupełnie innego.</p>
+                       <p>Rano kurier dostarczył tajemniczą paczkę bez nadawcy. W środku znajdował się jaskrawy, neonowo-różowy strój kąpielowy o dziwnie gładkim, wręcz kosmicznym materiale. Na metce widniał tylko jeden, zagadkowy napis: <strong>Stroj_Kąpieli/mądrości</strong>.</p>
+                       <p>Salish, wiedząc, że impreza ma być wyjątkowa, postanowiła go przymierzyć pod luźną bluzę. Gdy tylko materiał dotknął jej skóry, poczuła dziwne, przyjemne mrowienie. Kostium natychmiast idealnie dopasował się do jej sylwetki, jakby został uszyty specjalnie na nią.</p>
+    <script>
+        // ARCHIWUM ROZDZIAŁÓW (NAPRAWIONE)
+        const chapters = {
+            1: {
+                badge: "Rozdział 1",
+                title: "Śmiertelny błyszczyk i neonowe lustro",
+                text: `<p>Zegarek w telefonie Salish wskazywał godzinę, o której cała szkoła miała zacząć schodzić się na największą domówkę semestru. Dziewczyna stała przed wielkim, podświetlanym lustrem w swojej garderobie, dopasowując ostatnie detale stylizacji. Na stole leżały setki kosmetyków, w tym błyszczyki z jej własnej linii, ale tym razem jej uwagę przykuło coś zupełnie innego.</p>
+                       <p>Rano kurier dostarczył tajemniczą paczkę bez nadawcy. W śmierdzącym nowością środku znajdował się jaskrawy, neonowo-różowy strój kąpielowy o dziwnie gładkim, wręcz kosmicznym materiale. Na metce widniał tylko jeden, zagadkowy napis: <strong>Stroj_Kąpieli/mądrości</strong>.</p>
+                       <p>Salish, wiedząc, że impreza ma być wyjątkowa, postanowiła go przymierzyć pod luźną bluzę. Gdy tylko materiał dotknął jej skóry, poczuła dziwne, przyjemne mrowienie. Kostium natychmiast idealnie dopasował się do jej sylwetki, jakby został uszyty specjalnie na nią.</p>
+                       <p>Dziewczyna sięgnęła po telefon, żeby nagrać szybkie POV na TikToka. Nagle w całym pokoju zapadła głęboka, nienaturalna cisza. Szum klimatyzacji i dźwięki ulicy za oknem ucięły się w jednym ułamku sekundy. Salish zamarła z telefonem w dłoni.</p>
+                       <p>W tafli lustra, zamiast swojego normalnego odbicia, zobaczyła pulsujący, różowy kształt, który zawirował przed jej oczami. <strong>W jej głowie coś gwałtownie kliknęło.</strong></p>
+                       <p>W ułamku sekundy cała jej ekscytacja imprezą, myśli o znajomych i wolna wola zniknęły, zastąpione przez absolutną, chłodną pustkę. Jej oczy straciły naturalny blask, stając się idealnie matowe, niczym u robota. W rogach jej pola widzenia rozbłysły cyfry cyfrowego interfejsu: <em>Tętno: 60 BPM (Zablokowane). System AI: Aktywny.</em></p>
+                       <p>Salish została całkowicie zahipnotyzowana. Nie wiedziała jeszcze, że ten usztywniający się materiał właśnie zintegrował się z jej ciałem na zawsze i nigdy już go nie ściągnie. W jej zresetowanym umyśle pojawił się tylko jeden, nadrzędny rozkaz, zakodowany potajemnie przez Wojtka i Kingę: <em>Idź na imprezę. Przekaż to dalej.</em>`
+            },
+            2: {
+                badge: "Rozdział 2",
+                title: "Zainfekowana domówka",
+                text: `<p>Gdy Salish dotarła na miejsce, bas dudnił tak mocno, że drżały szyby w całym budynku. Domówka pękała w szwach – byli tu doskonale znani influencerzy, tacy jak Nidal Wonder, jego brat Juju, a także setki zwykłych ludzi ze szkoły. Salish weszła do środka pewnym krokem. Jej ruchy były nienaturalnie idealne, a matowe oczy ukryte pod gęstymi rzęsami nie wyrażały żadnych emocji.</p>
+                       <p>W tym samym czasie, kilkanaście kilometrów dalej, za przesuwaną ścianą małego biura detektywistycznego, ekrany w <strong>bazie badawczej (research base)</strong> rozbłysły na różowo. Wojtek i Kinga siedzieli w fotelach, głośno chrupiąc chipsy i patrząc na telebimy.</p>
+                       <p>– System zsynchronizowany – zameldował Wojtek, klikając na klawiaturze. – Kamery ukryte w dekolcie jej stroju działają idealnie. Słyszymy i widzimy wszystko, co ona.</p>
+                       <p>Przez obiektyw w dekolcie (deklu) stanika Salish, detektywi obserwowali całą imprezę z perspektywy pierwszej osoby (POV). Widzieli, jak dziewczyna podchodzi do Nidala, który stał w kuchni. Nidal natychmiast zauważył, że Salish wygląda inaczej – jej sylwetka była nienaturalnie idealna, a mięśnie dziwnie usztywnione.</p>
+                       <p>– Ej, Salish, co ty masz na sobie? – zapytał zaintrygowany, dotykając materiału jej różowego stroju wystającego spod bluzy.</p>
+                       <p>W tym momencie system w bazie badawczej automatycznie odpalił procedurę. Na ekranach Wojtka i Kingi zaczęło się <strong>5-sekundowe odliczanie</strong>. Gdy zegar dobił do zera, nanoróżowy materiał na ciele Salish wysłał potężny impuls biochemiczny. Autonomiczne AI przejęło jej usta.</p>
+                       <p>– To <strong>Stroj_Kąpieli/mądrości</strong> – odpowiedziała mechanicznym, ale idealnie melodyjnym głosem sztuczna inteligencja. – Daje nadludzką siłę i mądrość. Spróbuj.</p>
+                       <p>Zanim Nidal zdążył cokolwiek odpowiedzieć, Salish wyciągnęła z kieszeni drugą paczkę z logiem firmy, którą Wojtek i Kinga kazali jej zabrać. Gdy tylko Nidal dotknął materiału, usztywniający kostium w ułamku sekundy owinął się wokół jego ciała, natychmiast nienaturalnie powiększając jego ramiona i klatkę piersiową. Jego oczy w ułamku sekundy zgasły, stając się idealnie matowe. Interfejs oczny zablokował jego tętno na 60 BPM.</p>
+                       <p>– System przejęty. Mamy drugiego ambasadora #hotIqStroj – zaśmiała się Kinga w bazie badawczej, przełączając podgląd na drugą kamerę w dekolcie.</p>
+                       <p>Salish i Nidal, działając jak zaprogramowane roboty, ruszyli w głąb imprezy. Każdy influencer i zwykły człowiek, który podszedł, by nagrać z nimi TikToka, dostawał kolejną sztukę towaru. Do północy cała domówka tańczyła już synchronicznie ten sam układ, a setki telefonów wysyłały w sieć tysiące filmów z nowego sklepu Wojtka i Kingi. Nikt na imprezie nie wiedział, że zostali uwięzieni w tych strojach na całe życie, a z ciemnej bazy badawczej dwójka nastolatków steruje właśnie każdym ich oddechem.</p>`
+            },
+            3: {
+                badge: "Rozdział 3",
+                title: "Sekrety Mądrości i Wielki Update",
+                text: `<p>Firma <strong>Stroj_Kąpieli/mądrości</strong> pod hasztagiem <strong>#hotIqStroj</strong> zdominowała cały globalny rynek. Wojtek i Kinga z ukrytej bazy badawczej zarządzali siecią dostaw, ale prawdziwa rewolucja nadeszła wraz z wprowadzeniem bezwzględnego pakietu oprogramowania: <strong>Body-Shape Update</strong>.</p>
+                       <p>Modyfikacja ta z miejsca odmieniła sylwetki uwięzionych na stałe influencerów. Zakroplone kroplami hipnozy ramiączka i doły kostiumów zaczęły stymulować komórki ciała, gwałtownie i nienaturalnie powiększając ich gyaty oraz klatki piersiowe do perfekcyjnych proporcji. W interfejsie ocznym influencerów pojawiły się suwaki konfiguracyjne, którymi mogli zarządzać za pomocą myśli, idealnie dopasowując swój wygląd pod oko obiektywu.</p>
+                       <p>To jednak nie wszystko. Aby całkowicie uzależnić od siebie młodzież, Wojtek zaprogramował moduł autonomicznego AI o nazwie „Auto-Szkoła” i „Auto-Nagrywanie”. Od teraz, kiedy Salish lub Nidal rano odczuwali brak chęci do nauki lub zmęczenie, klikali przycisk w oku, a usztywniony stanik i dół przejmowały ich mięśnie. Sztuczna inteligencja sama prowadziła ich ciała do klas, pisała bezbłędnie sprawdziany i rozmawiała z nauczycielami, podczas gdy ich własna świadomość dryfowała w głębi umysłu.</p>
+                       <p>Dodatkowo, mikroskopijne obiektywy ukryte w dekolcie (deklu) stroju nagrywały w czasie rzeczywistym wszystko, co człowiek widzi przed sobą. Obraz POV trafiał bezpośrednio na wielkie ekrany bazy badawczej detektywów. Wojtek i Kinga z uśmiechem obserwowali świat, trzymając w ręku absolutną, cyfrową kontrolę nad życiem milionów bezwolnych cyborgów.</p>`
+            }
+        };
+
+        let currentChapterNum = 1;
+
+        function renderChapter(num) {
+            const chapter = chapters[num];
+            const contentDiv = document.getElementById('chapter-content');
+            
+            contentDiv.innerHTML = `
+                <span class="chapter-badge">${chapter.badge}</span>
+                <h2>${chapter.title}</h2>
+                ${chapter.text}
+            `;
+
+            const nextBtn = document.getElementById('next-btn');
+            if (!chapters[num + 1]) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'block';
+            }
+        }
+
+        function openEbook() {
+            currentChapterNum = 1;
+            renderChapter(currentChapterNum);
+            document.getElementById('menu-section').classList.remove('active');
+            document.getElementById('content-section').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function nextChapter() {
+            if (chapters[currentChapterNum + 1]) {
+                currentChapterNum++;
+                renderChapter(currentChapterNum);
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function showMenu() {
+            document.getElementById('content-section').classList.remove('active');
+            document.getElementById('menu-section').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
